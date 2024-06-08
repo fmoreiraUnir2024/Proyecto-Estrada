@@ -1,0 +1,79 @@
+<!--
+// v0 by Vercel.
+// https://v0.dev/t/tDh84mDXbD5
+-->
+
+<div class="w-full max-w-3xl mx-auto py-12 px-4 md:px-6">
+    <div class="space-y-6">
+      <div>
+        <h1 class="text-3xl font-bold tracking-tighter">Create a New Project</h1>
+        <p class="text-gray-500 dark:text-gray-400">Get started by filling out the form below.</p>
+      </div>
+      <form class="grid grid-cols-1 gap-6">
+        <div>
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="name"
+          >
+            Project Name
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            id="name"
+            placeholder="Enter project name"
+          />
+        </div>
+        <div>
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="description"
+          >
+            Brief Description
+          </label>
+          <textarea
+            class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            id="description"
+            placeholder="Describe your project"
+            rows="3"
+          ></textarea>
+        </div>
+        <div>
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="type"
+          >
+            Article Type
+          </label>
+          <option value="">Select article type</option>
+          <option value="report">Report</option>
+          <option value="scientific">Scientific Article</option>
+          <option value="manual">Manual</option>
+          <select
+            aria-hidden="true"
+            tabindex="-1"
+            style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;"
+          >
+            <option value=""></option>
+          </select>
+        </div>
+        <div>
+          <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Template
+          </label>
+          <div class="flex items-center space-x-4">
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+              Use Existing Template
+            </button>
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+              Upload Template
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="flex justify-end">
+        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-8">
+          Create Project
+        </button>
+      </div>
+    </div>
+  </div>

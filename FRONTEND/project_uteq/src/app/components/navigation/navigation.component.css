@@ -1,0 +1,21 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter), sans-serif;
+  }
+  header {
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  max-width: 1200px; 
+  margin: 0 auto;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
