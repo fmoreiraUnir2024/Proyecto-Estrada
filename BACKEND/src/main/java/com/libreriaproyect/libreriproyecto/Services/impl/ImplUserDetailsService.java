@@ -1,7 +1,7 @@
 package com.libreriaproyect.libreriproyecto.Services.impl;
 
 import com.libreriaproyect.libreriproyecto.repository.UserRepository;
-import com.libreriaproyect.libreriproyecto.entitys.User;
+import com.libreriaproyect.libreriproyecto.entidades.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +16,7 @@ public class ImplUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user= userRepository.findByUsername(username);
+        Usuario user= userRepository.findByUsername(username);
 
         if(user==null)
         {

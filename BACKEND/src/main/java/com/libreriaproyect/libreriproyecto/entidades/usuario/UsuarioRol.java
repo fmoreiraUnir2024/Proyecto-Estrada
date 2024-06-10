@@ -1,6 +1,7 @@
-package com.libreriaproyect.libreriproyecto.entitys;
+package com.libreriaproyect.libreriproyecto.entidades.usuario;
 
 import javax.persistence.*;
+
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -12,12 +13,12 @@ import javax.persistence.Entity;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRol {
+public class UsuarioRol {
     @Id
     @GeneratedValue(strategy = GenerationType. IDENTITY)
     private Long usuarioRolId;
     @ManyToOne (fetch = FetchType.EAGER)
-    private User usuario;
+    private Usuario usuario;
     @ManyToOne
     private Rol rol;
 

@@ -1,4 +1,4 @@
-package com.libreriaproyect.libreriproyecto.entitys;
+package com.libreriaproyect.libreriproyecto.entidades.autenticacion;
 
 public class JwtRequest {
     private String username;

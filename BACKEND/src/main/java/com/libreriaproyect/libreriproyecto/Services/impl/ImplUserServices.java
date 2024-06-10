@@ -1,10 +1,10 @@
 package com.libreriaproyect.libreriproyecto.Services.impl;
 
-import com.libreriaproyect.libreriproyecto.entitys.UserRol;
+import com.libreriaproyect.libreriproyecto.entidades.usuario.UsuarioRol;
 import com.libreriaproyect.libreriproyecto.repository.RolRepository;
 import com.libreriaproyect.libreriproyecto.repository.UserRepository;
 import com.libreriaproyect.libreriproyecto.Services.UserService;
-import com.libreriaproyect.libreriproyecto.entitys.User;
+import com.libreriaproyect.libreriproyecto.entidades.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +17,14 @@ public class ImplUserServices implements UserService {
     @Autowired
     private RolRepository rolRepository;
     @Override
-    public User guardarUsuario(User usuario, Set<UserRol> userRolSet) throws Exception {
-        User user= userRepository.findByUsername(usuario.getUsername());
+    public Usuario guardarUsuario(Usuario usuario, Set<UsuarioRol> userRolSet) throws Exception {
+        Usuario user= userRepository.findByUsername(usuario.getUsername());
         if(user!=null)
         {
             System.out.println("El usuario ya exite");
             throw  new Exception("El usuario ya existe");
         }else {
-            for(UserRol usuarioRol:userRolSet)
+            for(UsuarioRol usuarioRol:userRolSet)
             {
                 rolRepository.save(usuarioRol.getRol());
             }
@@ -35,7 +35,7 @@ public class ImplUserServices implements UserService {
     }
 
     @Override
-    public User ObtenerUsuario(String username) {
+    public Usuario ObtenerUsuario(String username) {
         return  userRepository.findByUsername(username);
     }
     @Override
@@ -45,8 +45,8 @@ public class ImplUserServices implements UserService {
     }
 
     @Override
-    public List<User> ListUser() {
-        List<User>  list= userRepository.findAll();
+    public List<Usuario> ListUser() {
+        List<Usuario>  list= userRepository.findAll();
         return list;
     }
 }

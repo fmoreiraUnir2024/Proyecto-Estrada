@@ -2,9 +2,9 @@ package com.libreriaproyect.libreriproyecto.Controller;
 
 import com.libreriaproyect.libreriproyecto.config.JwtUtils;
 import com.libreriaproyect.libreriproyecto.Services.impl.ImplUserDetailsService;
-import com.libreriaproyect.libreriproyecto.entitys.JwtRequest;
-import com.libreriaproyect.libreriproyecto.entitys.JwtResponse;
-import com.libreriaproyect.libreriproyecto.entitys.User;
+import com.libreriaproyect.libreriproyecto.entidades.autenticacion.JwtRequest;
+import com.libreriaproyect.libreriproyecto.entidades.autenticacion.JwtResponse;
+import com.libreriaproyect.libreriproyecto.entidades.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -55,7 +55,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/actual-usuario")
-    public User obtenerUsuarioActual(Principal principal){
-        return (User) this.userDetailsService.loadUserByUsername(principal.getName());
+    public Usuario obtenerUsuarioActual(Principal principal){
+        return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
     }
 }

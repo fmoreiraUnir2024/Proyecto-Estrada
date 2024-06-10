@@ -1,7 +1,12 @@
-package com.libreriaproyect.libreriproyecto.entitys;
+package com.libreriaproyect.libreriproyecto.entidades.usuario;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import com.libreriaproyect.libreriproyecto.entidades.autenticacion.Authority;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,22 +22,34 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User  implements UserDetails {
+public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "El nombre de usuario es obligatorio")
     private String username;
+
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     private String password;
+
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
+
+    @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
+
+    @Email(message = "Debe proporcionar un correo electrónico válido")
+    @NotBlank(message = "El correo electrónico es obligatorio")
     private String email;
-    private String telefono;
+
     private boolean enabled = true;
-    private String perfil;
+
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "usuario")
     @JsonIgnore
-    private Set<UserRol> userRolSet= new HashSet<>();
+    private Set<UsuarioRol> userRolSet= new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

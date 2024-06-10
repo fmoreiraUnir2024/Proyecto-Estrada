@@ -2,7 +2,7 @@ package com.libreriaproyect.libreriproyecto.Services.impl;
 
 import com.libreriaproyect.libreriproyecto.repository.RolRepository;
 import com.libreriaproyect.libreriproyecto.Services.RolService;
-import com.libreriaproyect.libreriproyecto.entitys.Rol;
+import com.libreriaproyect.libreriproyecto.entidades.usuario.Rol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

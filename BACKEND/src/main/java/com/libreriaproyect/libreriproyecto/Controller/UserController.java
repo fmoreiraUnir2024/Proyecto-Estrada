@@ -1,9 +1,9 @@
 package com.libreriaproyect.libreriproyecto.Controller;
 
-import com.libreriaproyect.libreriproyecto.entitys.UserRol;
+import com.libreriaproyect.libreriproyecto.entidades.usuario.UsuarioRol;
 import com.libreriaproyect.libreriproyecto.Services.RolService;
 import com.libreriaproyect.libreriproyecto.Services.UserService;
-import com.libreriaproyect.libreriproyecto.entitys.User;
+import com.libreriaproyect.libreriproyecto.entidades.usuario.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -26,12 +26,11 @@ public class UserController  {
    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/save")
-    public User GuardarUsuario(@RequestBody   User user) throws Exception {
+    public Usuario GuardarUsuario(@RequestBody Usuario user) throws Exception {
 
-        user.setPerfil("defauld.png");
         user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-        Set<UserRol> usuarioRoles = new HashSet<>();
-        UserRol usuarioRol = new UserRol();
+        Set<UsuarioRol> usuarioRoles = new HashSet<>();
+        UsuarioRol usuarioRol = new UsuarioRol();
         usuarioRol.setRol(rolService.obtenerRol("ADMIN"));
         usuarioRol.setUsuario(user);
         usuarioRoles.add(usuarioRol);
@@ -41,7 +40,7 @@ public class UserController  {
 
     @GetMapping(" /(username}")
     @Procedure(MediaType.APPLICATION_JSON_VALUE)
-    public User obtenerUsuario(@PathVariable("username") String username) {
+    public Usuario obtenerUsuario(@PathVariable("username") String username) {
         return userService.ObtenerUsuario(username);
     }
 

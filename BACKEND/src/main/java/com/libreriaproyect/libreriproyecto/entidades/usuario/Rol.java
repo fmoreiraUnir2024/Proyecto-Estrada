@@ -1,6 +1,7 @@
-package com.libreriaproyect.libreriproyecto.entitys;
+package com.libreriaproyect.libreriproyecto.entidades.usuario;
 
 import javax.persistence.*;
+
 import lombok.*;
 
 import java.util.HashSet;
@@ -20,5 +21,5 @@ public class Rol {
     private String nombre;
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "rol")
-    private Set<UserRol> userRolSet= new HashSet<>();
+    private Set<UsuarioRol> userRolSet= new HashSet<>();
 }
