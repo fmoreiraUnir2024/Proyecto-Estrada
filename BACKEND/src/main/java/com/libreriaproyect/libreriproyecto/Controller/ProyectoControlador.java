@@ -1,7 +1,9 @@
 package com.libreriaproyect.libreriproyecto.Controller;
 import com.libreriaproyect.libreriproyecto.Services.ProyectoServicio;
 import com.libreriaproyect.libreriproyecto.entidades.proyecto.Proyecto;
+import com.libreriaproyect.libreriproyecto.entidades.proyecto.dto.ProyectoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/proyectos")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProyectoControlador {
 
     @Autowired
@@ -20,9 +23,9 @@ public class ProyectoControlador {
         return ResponseEntity.ok(proyectos);
     }
     @PostMapping
-    public ResponseEntity<Proyecto> crearProyecto(@RequestBody Proyecto proyecto) {
-        Proyecto nuevoProyecto = proyectoServicio.crearProyecto(proyecto);
-        return ResponseEntity.ok(nuevoProyecto);
+    public ResponseEntity<Proyecto> crearProyecto(@RequestBody ProyectoDTO proyectoDTO) {
+        Proyecto proyecto = proyectoServicio.crearProyecto(proyectoDTO);
+        return new ResponseEntity<>(proyecto, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

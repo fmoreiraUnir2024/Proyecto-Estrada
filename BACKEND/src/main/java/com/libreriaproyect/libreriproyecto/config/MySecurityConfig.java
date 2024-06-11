@@ -14,8 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-
 @EnableWebSecurity
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
@@ -23,9 +21,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
-    private   JwtAuthenticationEntryPoin jwtAuthenticationEntryPoin;
+    private JwtAuthenticationEntryPoin jwtAuthenticationEntryPoin;
     @Autowired
     private ImplUserDetailsService userDetailsService;
+
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -34,29 +33,22 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .disable()
-                .cors()
-                .disable()
+                .csrf().disable()
+                .cors().and() // Habilitar CORS
                 .authorizeRequests()
-                .antMatchers("/auth/v1/**","/usuarios/", "/actual-usuario", "/user/v1/**","/animal/v2/**", "/animal/v1/search/**").permitAll()
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/auth/v1/**").permitAll()  // Permitir acceso no autenticado a endpoints de autenticación
+                .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoin)
                 .and()

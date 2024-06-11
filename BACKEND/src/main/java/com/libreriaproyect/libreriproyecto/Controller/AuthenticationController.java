@@ -6,6 +6,7 @@ import com.libreriaproyect.libreriproyecto.entidades.autenticacion.JwtRequest;
 import com.libreriaproyect.libreriproyecto.entidades.autenticacion.JwtResponse;
 import com.libreriaproyect.libreriproyecto.entidades.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,7 +20,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("auth/v1")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -55,7 +56,11 @@ public class AuthenticationController {
     }
 
     @GetMapping("/actual-usuario")
-    public Usuario obtenerUsuarioActual(Principal principal){
-        return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
+    public ResponseEntity<?> obtenerUsuarioActual(Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autorizado");
+        }
+        Usuario usuario = (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
+        return ResponseEntity.ok(usuario);
     }
 }

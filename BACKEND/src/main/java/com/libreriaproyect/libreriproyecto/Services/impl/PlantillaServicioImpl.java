@@ -29,7 +29,11 @@ public class PlantillaServicioImpl implements PlantillaServicio {
         Optional<Plantilla> plantilla = plantillaRepositorio.findById(id);
         return plantilla.orElse(null);
     }
-
+    @Override
+    public List<Plantilla> obtenerPlantillasPorUsuario(String username) {
+        Usuario usuario = usuarioRepositorio.findByUsername(username);
+        return plantillaRepositorio.findByUsuario(usuario);
+    }
     @Override
     public List<Plantilla> obtenerTodasLasPlantillas() {
         return plantillaRepositorio.findAll();

@@ -12,7 +12,9 @@ import { StyleGuideComponent } from './components/style-guide/style-guide.compon
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { GrammarReviewComponent } from './components/grammar-review/grammar-review.component';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
-
+import { AuthInterceptor } from './services/AuthInterceptor'; // Importa el interceptor
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,9 +31,15 @@ import { ProjectManagementComponent } from './components/project-management/proj
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

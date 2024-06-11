@@ -8,9 +8,9 @@ import javax.validation.constraints.Size;
 
 import com.libreriaproyect.libreriproyecto.entidades.autenticacion.Authority;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +31,8 @@ public class Usuario implements UserDetails {
     private String username;
 
     @NotBlank(message = "La contraseña es obligatoria")
-    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
+    @Size(min = 2, message = "La contraseña debe tener al menos 8 caracteres")
+    @JsonIgnore
     private String password;
 
     @NotBlank(message = "El nombre es obligatorio")
@@ -53,9 +54,9 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Authority> authorities= new HashSet<>();
-        this.userRolSet.forEach(userRol -> {
-            authorities.add(new Authority(userRol.getRol().getNombre()));
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        this.userRolSet.forEach(usuarioRol -> {
+            authorities.add(new Authority(usuarioRol.getRol().getNombre()));
         });
         return authorities;
     }

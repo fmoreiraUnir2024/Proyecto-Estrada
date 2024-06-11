@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/plantillas")
 public class PlantillaControlador {
@@ -28,7 +29,11 @@ public class PlantillaControlador {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @GetMapping("/usuario")
+    public List<Plantilla> obtenerPlantillasPorUsuario(Principal principal) {
+        String username = principal.getName();
+        return plantillaServicio.obtenerPlantillasPorUsuario(username);
+    }
     @GetMapping
     public ResponseEntity<List<Plantilla>> obtenerTodasLasPlantillas() {
         List<Plantilla> plantillas = plantillaServicio.obtenerTodasLasPlantillas();
