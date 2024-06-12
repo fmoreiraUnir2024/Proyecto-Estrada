@@ -1,11 +1,12 @@
 package com.libreriaproyect.libreriproyecto.Services;
 
 import com.libreriaproyect.libreriproyecto.entidades.proyecto.Plantilla;
+import com.libreriaproyect.libreriproyecto.entidades.proyecto.dto.PlantillaDTO;
 
 import java.util.List;
 
 public interface PlantillaServicio {
-    Plantilla crearPlantilla(Plantilla plantilla, Long usuarioId);
+    Plantilla crearPlantilla(PlantillaDTO plantillaDTO);
     List<Plantilla> obtenerPlantillasPorUsuarioId(Long usuarioId);
     List<Plantilla> obtenerPlantillasPorUsuario(String username);
     Plantilla obtenerPlantillaPorId(Long id);

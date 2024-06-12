@@ -14,7 +14,9 @@ import { GrammarReviewComponent } from './components/grammar-review/grammar-revi
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
 import { AuthInterceptor } from './services/AuthInterceptor'; // Importa el interceptor
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { GestionarPlantillasComponent } from './components/gestionar-plantillas/gestionar-plantillas.component'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,13 +29,15 @@ import { FormsModule } from '@angular/forms';
     StyleGuideComponent,
     FeedbackComponent,
     GrammarReviewComponent,
-    ProjectManagementComponent
+    ProjectManagementComponent,
+    GestionarPlantillasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule 
+    FormsModule ,
+  
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -21,6 +21,7 @@ public class Plantilla {
     private String nombre;
 
     @NotBlank(message = "El formato de la plantilla es obligatorio")
+    @Column(columnDefinition = "TINYTEXT")
     private String formato;
 
     @ManyToOne

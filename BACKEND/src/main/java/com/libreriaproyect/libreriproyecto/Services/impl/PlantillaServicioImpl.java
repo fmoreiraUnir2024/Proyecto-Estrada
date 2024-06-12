@@ -2,6 +2,7 @@ package com.libreriaproyect.libreriproyecto.Services.impl;
 
 import com.libreriaproyect.libreriproyecto.Services.PlantillaServicio;
 import com.libreriaproyect.libreriproyecto.entidades.proyecto.Plantilla;
+import com.libreriaproyect.libreriproyecto.entidades.proyecto.dto.PlantillaDTO;
 import com.libreriaproyect.libreriproyecto.entidades.usuario.Usuario;
 import com.libreriaproyect.libreriproyecto.repository.PlantillaRepositorio;
 import com.libreriaproyect.libreriproyecto.repository.UserRepository;
@@ -19,9 +20,14 @@ public class PlantillaServicioImpl implements PlantillaServicio {
     private PlantillaRepositorio plantillaRepositorio;
 
     @Override
-    public Plantilla crearPlantilla(Plantilla plantilla, Long usuarioId) {
-        Usuario usuario = usuarioRepositorio.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    public Plantilla crearPlantilla(PlantillaDTO plantillaDTO) {
+        Usuario usuario = usuarioRepositorio.findById(plantillaDTO.getUsuario_id()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        Plantilla plantilla = new Plantilla();
+        plantilla.setNombre(plantillaDTO.getNombre());
+        plantilla.setFormato(plantillaDTO.getFormato());
         plantilla.setUsuario(usuario);
+
         return plantillaRepositorio.save(plantilla);
     }
     @Override

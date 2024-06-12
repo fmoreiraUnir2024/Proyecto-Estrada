@@ -9,7 +9,7 @@ import { StyleGuideComponent } from './components/style-guide/style-guide.compon
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { GrammarReviewComponent } from './components/grammar-review/grammar-review.component';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
-
+import {  GestionarPlantillasComponent } from './components/gestionar-plantillas/gestionar-plantillas.component'
 const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'project-data-entry', component: ProjectDataEntryComponent },
   { path: 'style-guide', component: StyleGuideComponent },
   { path: 'feedback', component: FeedbackComponent },
+  { path: 'plantillas', component: GestionarPlantillasComponent },
   { path: 'grammar-review', component: GrammarReviewComponent },
   { path: 'project-management', component: ProjectManagementComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

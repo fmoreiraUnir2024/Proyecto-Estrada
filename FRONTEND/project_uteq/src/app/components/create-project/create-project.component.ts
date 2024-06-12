@@ -26,7 +26,7 @@ export class CreateProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.plantillaService.obtenerPlantillasPorUsuario().subscribe(
+    this.plantillaService.obtenerPlantillas().subscribe(
       (data: any) => {
         this.plantillas = data;
       },
@@ -35,7 +35,7 @@ export class CreateProjectComponent implements OnInit {
       }
     );
 
-    // Obtener el usuario actual del servicio de autenticación
+ 
     const usuario = this.authService.getUser();
     this.proyecto.usuario_id = usuario.id;
   }

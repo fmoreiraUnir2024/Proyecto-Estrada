@@ -1,7 +1,9 @@
 package com.libreriaproyect.libreriproyecto.Controller;
 import com.libreriaproyect.libreriproyecto.Services.PlantillaServicio;
 import com.libreriaproyect.libreriproyecto.entidades.proyecto.Plantilla;
+import com.libreriaproyect.libreriproyecto.entidades.proyecto.dto.PlantillaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +17,15 @@ public class PlantillaControlador {
     @Autowired
     private PlantillaServicio plantillaServicio;
 
-    @PostMapping
+  /*  @PostMapping
     public ResponseEntity<Plantilla> crearPlantilla(@RequestBody Plantilla plantilla, @RequestParam Long usuarioId) {
         Plantilla nuevaPlantilla = plantillaServicio.crearPlantilla(plantilla, usuarioId);
         return ResponseEntity.ok(nuevaPlantilla);
+    }*/
+    @PostMapping
+    public ResponseEntity<Plantilla> crearPlantilla(@RequestBody PlantillaDTO plantillaDTO) {
+        Plantilla plantilla = plantillaServicio.crearPlantilla(plantillaDTO);
+        return new ResponseEntity<>(plantilla, HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
     public ResponseEntity<Plantilla> obtenerPlantillaPorId(@PathVariable Long id) {
