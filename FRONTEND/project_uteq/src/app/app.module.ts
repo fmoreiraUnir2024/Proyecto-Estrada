@@ -15,8 +15,9 @@ import { ProjectManagementComponent } from './components/project-management/proj
 import { AuthInterceptor } from './services/AuthInterceptor'; // Importa el interceptor
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { GestionarPlantillasComponent } from './components/gestionar-plantillas/gestionar-plantillas.component'; 
-
+import { GestionarPlantillasComponent } from './components/gestionar-plantillas/gestionar-plantillas.component';
+import { ProjectComponent } from './components/project/project.component'; 
+import { EditorModule } from '@tinymce/tinymce-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +31,14 @@ import { GestionarPlantillasComponent } from './components/gestionar-plantillas/
     FeedbackComponent,
     GrammarReviewComponent,
     ProjectManagementComponent,
-    GestionarPlantillasComponent
+    GestionarPlantillasComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule ,
+    FormsModule,EditorModule
   
   ],
   providers: [{

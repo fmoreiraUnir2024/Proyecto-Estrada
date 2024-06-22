@@ -15,7 +15,12 @@ export class CreateProjectComponent implements OnInit {
     descripcion: '',
     tipo_articulo: '',
     usuario_id: 0,
-    plantilla_id: 0
+    plantilla_id: 0,
+    proyecto_id: 0,
+    
+    resumen: '',
+    palabrasClave: '',
+    contenido: '',
   };
   plantillas: any[] = [];
 

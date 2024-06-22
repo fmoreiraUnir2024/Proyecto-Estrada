@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/proyectos")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProyectoControlador {
 
     @Autowired
@@ -29,8 +29,11 @@ public class ProyectoControlador {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Proyecto> obtenerProyectoPorId(@PathVariable Long id) {
+    public ResponseEntity<Proyecto> obtenerProyectoPorId(@PathVariable Integer id) {
         Proyecto proyecto = proyectoServicio.obtenerProyectoPorId(id);
+        ProyectoDTO.builder().nombre(proyecto.getNombre())
+                .descripcion(proyecto.getDescripcion())
+                .plantilla_id(proyecto.getPlantilla().getId()).id( proyecto.getId()).build();
         if (proyecto != null) {
             return ResponseEntity.ok(proyecto);
         } else {
@@ -43,9 +46,17 @@ public class ProyectoControlador {
         List<Proyecto> proyectos = proyectoServicio.obtenerTodosLosProyectos();
         return ResponseEntity.ok(proyectos);
     }
-
+    @PutMapping("contenido/{id}")
+    public ResponseEntity<Proyecto> actualizarContenido(@PathVariable Integer id, @RequestBody String nuevoContenido) {
+        Proyecto proyectoActualizado = proyectoServicio.actualizarContenido(id, nuevoContenido);
+        if (proyectoActualizado != null) {
+            return ResponseEntity.ok(proyectoActualizado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @PutMapping("/{id}")
-    public ResponseEntity<Proyecto> actualizarProyecto(@PathVariable Long id, @RequestBody Proyecto proyecto) {
+    public ResponseEntity<Proyecto> actualizarProyecto(@PathVariable Integer id, @RequestBody Proyecto proyecto) {
         Proyecto proyectoActualizado = proyectoServicio.actualizarProyecto(id, proyecto);
         if (proyectoActualizado != null) {
             return ResponseEntity.ok(proyectoActualizado);
@@ -55,7 +66,7 @@ public class ProyectoControlador {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarProyecto(@PathVariable Long id) {
+    public ResponseEntity<Void> eliminarProyecto(@PathVariable Integer id) {
         proyectoServicio.eliminarProyecto(id);
         return ResponseEntity.noContent().build();
     }

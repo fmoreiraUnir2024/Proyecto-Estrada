@@ -22,7 +22,7 @@ public class Documento {
 
     @NotBlank(message = "El formato del documento es obligatorio")
     private String formato;
-
+    private String contenido;
     @ManyToOne
     @JoinColumn(name = "proyecto_id", nullable = false)
     private Proyecto proyecto;

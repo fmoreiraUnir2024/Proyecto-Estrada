@@ -26,7 +26,9 @@ public class ProyectoServicioImpl implements ProyectoServicio {
     @Override
     public Proyecto crearProyecto(ProyectoDTO proyectoDTO) {
         Usuario usuario = usuarioRepositorio.findById(proyectoDTO.getUsuario_id()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        Plantilla plantilla = plantillaRepositorio.findById(proyectoDTO.getPlantilla_id()).orElseThrow(() -> new RuntimeException("Plantilla no encontrada"));
+        Plantilla plantilla = plantillaRepositorio
+                .findById(proyectoDTO.getPlantilla_id())
+                .orElseThrow(() -> new RuntimeException("Plantilla no encontrada"));
 
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre(proyectoDTO.getNombre());
@@ -39,7 +41,7 @@ public class ProyectoServicioImpl implements ProyectoServicio {
     }
 
     @Override
-    public Proyecto obtenerProyectoPorId(Long id) {
+    public Proyecto obtenerProyectoPorId(Integer id) {
         Optional<Proyecto> proyecto = proyectoRepositorio.findById(id);
         return proyecto.orElse(null);
     }
@@ -50,7 +52,7 @@ public class ProyectoServicioImpl implements ProyectoServicio {
     }
 
     @Override
-    public Proyecto actualizarProyecto(Long id, Proyecto proyecto) {
+    public Proyecto actualizarProyecto(Integer id, Proyecto proyecto) {
         if (proyectoRepositorio.existsById(id)) {
             proyecto.setId(id);
             return proyectoRepositorio.save(proyecto);
@@ -63,9 +65,20 @@ public class ProyectoServicioImpl implements ProyectoServicio {
         return proyectoRepositorio.findByUsuarioId(usuarioId);
     }
 
+    @Override
+    public Proyecto actualizarContenido(Integer id, String nuevoContenido) {
+        Optional<Proyecto> proyectoOpt = proyectoRepositorio.findById(id);
+        if (proyectoOpt.isPresent()) {
+            Proyecto proyecto = proyectoOpt.get();
+            proyecto.setContenido(nuevoContenido);
+            return proyectoRepositorio.save(proyecto);
+        }
+        return null;
+    }
+
 
     @Override
-    public void eliminarProyecto(Long id) {
+    public void eliminarProyecto(Integer id) {
         proyectoRepositorio.deleteById(id);
     }
 }

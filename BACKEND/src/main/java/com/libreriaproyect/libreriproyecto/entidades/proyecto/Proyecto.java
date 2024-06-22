@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 public class Proyecto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotBlank(message = "El nombre del proyecto es obligatorio")
     private String nombre;
@@ -34,4 +34,13 @@ public class Proyecto {
     @ManyToOne
     @JoinColumn(name = "plantilla_id")
     private Plantilla plantilla;
+
+    @JoinColumn(name = "contenido" ,columnDefinition = "TEXT" )
+    private String contenido;
+
+    @JoinColumn(name = "resumen"  )
+    private String resumen;
+    @JoinColumn(name = "palabras_clave"  )
+    private String palabrasClave;
+
 }

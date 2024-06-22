@@ -10,6 +10,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { GrammarReviewComponent } from './components/grammar-review/grammar-review.component';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
 import {  GestionarPlantillasComponent } from './components/gestionar-plantillas/gestionar-plantillas.component'
+import { ProjectComponent } from './components/project/project.component';
 const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
@@ -20,9 +21,13 @@ const routes: Routes = [
   { path: 'feedback', component: FeedbackComponent },
   { path: 'plantillas', component: GestionarPlantillasComponent },
   { path: 'grammar-review', component: GrammarReviewComponent },
+  { path: 'create-project/:id', component: CreateProjectComponent },
+  { path: 'project-data-entry/:id', component: ProjectDataEntryComponent },
   { path: 'project-management', component: ProjectManagementComponent },
+  { path: 'project/:id', component: ProjectComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
+
 ];
 
 @NgModule({

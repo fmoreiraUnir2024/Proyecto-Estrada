@@ -1,0 +1,254 @@
+<div style="">
+    <header class="bg-gray-900 text-white py-4 px-6">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="h-6 w-6 mr-2">
+                    <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+                </svg>
+                <span class="text-lg font-semibold">{{datosProyecto.nombre}}</span>
+            </div>
+            <div class="div">
+                <button (click)="guardarContenido()"
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                          Guardar documento
+               </button>
+            </div>
+    
+        </div>
+    </header>
+  
+    <div  class="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-6 p-4 md:p-6">
+        <div class="bg-white rounded-lg  p- dark:bg-gray-950">
+            <editor apiKey="8phbkaeghasw787tkiaq6kczl3xuxk3uwy6u5nffz5hu3enb" [(ngModel)]="editorContent" [init]="{
+    height: 1000,
+    menubar: false,
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table paste code help wordcount'
+    ],
+    toolbar:
+      'undo redo | formatselect | bold italic backcolor | \
+      alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | removeformat | help'
+  }"></editor>
+
+
+        </div>
+        <div class="bg-white rounded-lg  p- dark:bg-gray-950">
+            
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Recomendaciones</h3>
+                    <div class="grid gap-2">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-5 h-5 text-primary">
+                                <path
+                                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5">
+                                </path>
+                                <path d="M9 18h6"></path>
+                                <path d="M10 22h4"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Temas relacionados</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Escritura creativa, narrativa,
+                                    poesía</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-5 h-5 text-primary">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Recursos útiles</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">
+                                    <a class="underline" href="#">
+                                        Guía de estilo de escritura
+                                    </a>
+                                    ,
+                                    <a class="underline" href="#">
+                                        Consejos para escribir mejor
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-5 h-5 text-primary">
+                                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Contenido similar</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">
+                                    <a class="underline" href="#">
+                                        Cómo escribir un cuento corto
+                                    </a>
+                                    ,
+                                    <a class="underline" href="#">
+                                        Técnicas de escritura persuasiva
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-orientation="horizontal" role="none" class="shrink-0 bg-gray-100 h-[1px] w-full"></div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Estadística del Proyecto</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 text-center">
+                            <h4 class="text-2xl font-bold">125</h4>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Usuarios</p>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 text-center">
+                            <h4 class="text-2xl font-bold">32</h4>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Artículos</p>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 text-center">
+                            <h4 class="text-2xl font-bold">8.4K</h4>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Visitas</p>
+                        </div>
+                    </div>
+                </div>
+                <div data-orientation="horizontal" role="none" class="shrink-0 bg-gray-100 h-[1px] w-full"></div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Otras herramientas</h3>
+                    <div class="grid gap-2">
+                        <button
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                            Corrector ortográfico
+                        </button>
+                        <button
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium 
+                            ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2
+                             focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none 
+                             disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground 
+                             h-9 rounded-md px-3">
+                            Analisis profundo
+                            </button>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 space-y-4">
+                        <div>
+                          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50 mb-2">Strengths</h3>
+                          <ul style="font-size: 12px;" class="list-disc pl-6 text-gray-600 dark:text-gray-400">
+                            <li>Well-researched and informative content</li>
+                            <li>Clear and concise writing style</li>
+                            <li>Relevant examples and supporting evidence</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50 mb-2">Areas for Improvement</h3>
+                          <ul style="font-size: 12px;" class="list-disc pl-6 text-gray-600 dark:text-gray-400">
+                            <li>Enhance the introduction to capture the reader's interest</li>
+                            <li>Improve the flow and transitions between paragraphs</li>
+                            <li>Strengthen the conclusion to leave a lasting impression</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50 mb-2">Overall Score</h3>
+                          <div class="flex items-center space-x-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="h-6 w-6 text-yellow-500"
+                            >
+                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="h-6 w-6 text-yellow-500"
+                            >
+                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="h-6 w-6 text-yellow-500"
+                            >
+                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="h-6 w-6 text-gray-400"
+                            >
+                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="h-6 w-6 text-gray-400"
+                            >
+                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1  gap-6 p-4 md:p-6 md:pt-0">
+        <div class="bg-white  p-0 dark:bg-gray-950">
+           
+                
+                <app-feedback></app-feedback>
+                 
+              
+             
+              
+              
+        </div>
+    </div>
+   
+        
+          
+        <!-- <app-feedback></app-feedback> -->
+    </div>

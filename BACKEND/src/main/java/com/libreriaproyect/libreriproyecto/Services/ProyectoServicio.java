@@ -7,10 +7,11 @@ import java.util.List;
 
 public interface ProyectoServicio {
     Proyecto crearProyecto(ProyectoDTO proyecto);
-    Proyecto obtenerProyectoPorId(Long id);
+    Proyecto obtenerProyectoPorId(Integer id);
     List<Proyecto> obtenerTodosLosProyectos();
-    Proyecto actualizarProyecto(Long id, Proyecto proyecto);
-    void eliminarProyecto(Long id);
+    Proyecto actualizarProyecto(Integer id, Proyecto proyecto);
+    void eliminarProyecto(Integer id);
     List<Proyecto> obtenerProyectosPorUsuarioId(Long usuarioId);
+    Proyecto actualizarContenido(Integer id, String nuevoContenido);
 
 }

@@ -47,7 +47,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors().and() // Habilitar CORS
                 .authorizeRequests()
-                .antMatchers("/auth/v1/**").permitAll()  // Permitir acceso no autenticado a endpoints de autenticación
+                .antMatchers("/auth/v1/**", "/gpt/**").permitAll()  // Permitir acceso no autenticado a endpoints de autenticación
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoin)

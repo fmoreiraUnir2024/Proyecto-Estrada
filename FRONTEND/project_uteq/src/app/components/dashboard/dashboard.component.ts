@@ -45,4 +45,16 @@ export class DashboardComponent implements OnInit {
   logout(): void {
     this.authService.logout();
   }
+  DocumentoProyecto(proyectoId: number): void {
+    this.router.navigate(['/project-data-entry', proyectoId]);
+    
+  }
+
+  DescargarDocumentoProyecto(proyectoId: number): void {
+    this.router.navigate(['/project-data-entry', proyectoId, '/documentos']);
+  }
+  verTodaInformacionProyecto(proyectoId: number): void {
+    this.router.navigate(['/project', proyectoId]);
+    
+  }
 }
