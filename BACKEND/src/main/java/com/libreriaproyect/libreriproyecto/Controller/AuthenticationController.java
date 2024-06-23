@@ -20,7 +20,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("auth/v1")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;

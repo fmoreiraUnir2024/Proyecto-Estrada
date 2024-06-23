@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Proyecto } from '../models/proyecto'; // Asegúrate de tener un modelo para Proyecto
 import baseUrl from './helper';
 import { DocumentFuente } from '../models/documento';
@@ -31,5 +31,18 @@ export class ProjectService {
   }
   actualizarContenido(id: number, contenido: string): Observable<Proyecto> {
     return this.httpClient.put<Proyecto>(`${baseUrl}/api/proyectos/contenido/${id}`, contenido);
+  }
+  buscarReferencias(contenido: string): Observable<string> {
+   const url = `${baseUrl}/gpt/v1/chat`;
+  const body = { contents: [{ parts: [{ text: contenido }] }] };
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+  return this.httpClient.post(url, body, { headers, responseType: 'text' }).pipe(
+    catchError(this.handleError)
+  );
+  }
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('An error occurred:', error.message);
+    return throwError('Something bad happened; please try again later.');
   }
 }

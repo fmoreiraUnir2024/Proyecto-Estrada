@@ -35,7 +35,7 @@ public class Proyecto {
     @JoinColumn(name = "plantilla_id")
     private Plantilla plantilla;
 
-    @JoinColumn(name = "contenido" ,columnDefinition = "TEXT" )
+    @JoinColumn(name = "contenido")
     private String contenido;
 
     @JoinColumn(name = "resumen"  )
