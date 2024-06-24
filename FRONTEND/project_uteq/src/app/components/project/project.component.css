@@ -1,0 +1,25 @@
+/* Estilo del scroll para elementos dentro de contenedores */
+.container {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #b0b0b0 #f0f0f0; /* Firefox */
+  }
+  
+  .container::-webkit-scrollbar {
+    width: 8px; /* Ancho del scroll */
+    height: 8px; /* Alto del scroll */
+  }
+  
+  .container::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Color del fondo del track */
+  }
+  
+  .container::-webkit-scrollbar-thumb {
+    background-color: #b0b0b0; /* Color del scroll */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 2px solid #f0f0f0; /* Espacio entre el scroll y el track */
+  }
+  
+  /* Estilo del scroll en hover para contenedores */
+  .container::-webkit-scrollbar-thumb:hover {
+    background-color: #909090; /* Color del scroll en hover */
+  }

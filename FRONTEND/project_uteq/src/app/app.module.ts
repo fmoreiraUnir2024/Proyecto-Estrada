@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { GestionarPlantillasComponent } from './components/gestionar-plantillas/gestionar-plantillas.component';
 import { ProjectComponent } from './components/project/project.component'; 
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { MarkdownModule } from 'ngx-markdown';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,EditorModule
+    FormsModule,EditorModule,
+    MarkdownModule.forRoot(),
   
   ],
   providers: [{

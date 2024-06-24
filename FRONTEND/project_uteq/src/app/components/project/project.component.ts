@@ -6,6 +6,7 @@ import { GenerativeLanguageGemeniService } from 'src/app/services/generative-lan
 import { ProjectService } from 'src/app/services/project.service';
 import { Editor } from 'tinymce';
 
+
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -33,7 +34,15 @@ export class ProjectComponent implements OnInit {
   editorContent: string = '';
   selectedText: string = '';
   referencias: any[] = []; 
+  feedback: any = {
+    fortalezas: [],
+    areasParaMejorar: [],
+    puntuacionGeneral: 0
+  };
+  alternativas:string[]=[];
   nombreplantilla:any;
+  contenidplantilla:any;
+  markdownContent = '';
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -66,23 +75,58 @@ export class ProjectComponent implements OnInit {
     const seleccion = editor.selection.getContent({ format: 'text' });
     this.selectedText = seleccion;
   }
-
-  usarTextoSeleccionado(): void {
+  ejecutadorIA()
+  {
     const seleccion:string= this.selectedText;
-     this.proyectoService.buscarReferencias(seleccion).subscribe(
-        (data: any) => {
-         
-          const cleanedData = data.replace(/```json|```/g, '');
-          this.referencias = JSON.parse(cleanedData);
-          
-        },
-        error => {
-          console.error( error);
-        }
-      );
-    // Aquí puedes agregar la lógica para usar el texto seleccionado
-  }
+    if(seleccion.length>250)
+    {
+      this.cargarReferencias();
 
+    }else {
+      console.log("Es muy corto")
+    }
+  }
+  obtenerAlternativas()
+  {
+    const seleccion: string = this.selectedText;
+    console.log("Estas llamando al botón desde grammar ")
+     this.proyectoService.obtenerAlternativas(seleccion).subscribe(
+       (data: any) => {
+         this.alternativas=data.replaceAll("*","").replaceAll("## Alternativa"," ").split('GPQ');
+        console.log(this.alternativas) 
+      },
+      error => {
+        console.error('Error al obtener referencias', error);
+      }
+     );
+  }
+  cargarReferencias(): void {
+    const seleccion: string = this.selectedText;
+    this.proyectoService.buscarReferencias(seleccion).subscribe(
+      (data: any) => {
+        this.referencias = JSON.parse(data.replace(/```json|```/g, '').replace("título","titulo"));
+
+        console.log(this.referencias);
+        this.cargarFeedback();
+      },
+      error => {
+        console.error('Error al obtener referencias', error);
+      }
+    );
+  }
+  cargarFeedback(): void {
+    const seleccion: string = this.selectedText;
+    this.proyectoService.obtenerPuntos(seleccion).subscribe(
+      (data: any) => {
+        this.feedback = JSON.parse(data.replace(/```json|```/g, ''));
+        console.log(this.feedback);
+      },
+      error => {
+        console.error('Error al obtener feedback', error);
+      }
+    );
+  }
+  
   guardarContenido(): void {
     if (this.idProyecto && this.editorContent) {
       this.proyectoService.actualizarContenido(this.idProyecto, this.editorContent).subscribe(
@@ -108,15 +152,29 @@ export class ProjectComponent implements OnInit {
       }
     );
   }
-
+ 
   cargarInformacion(id: any): void {
     this.proyectoService.buscarProyectoPorId(id).subscribe(
       (data: any) => {
         this.datosProyecto = data;
-        this.editorContent = data.plantilla.formato;        
+        this.contenidplantilla = data.plantilla.formato;        
         this.editorContent = data.contenido === '' || data.contenido === null ? data.plantilla.formato : data.contenido;
         this.nombreplantilla=data.plantilla.nombre;
+      
         console.log(this.datosProyecto);
+      },
+      error => {
+        console.error('Error al obtener informacion', error);
+      }
+    );
+  }
+  obtenerfeedback(): void
+  {
+     const seleccion: string = this.selectedText;
+     const pla:string=this.contenidplantilla ;
+    this.proyectoService.analisisPlantilla(seleccion,pla).subscribe(
+      (data: any) => {
+       this.markdownContent=data;
       },
       error => {
         console.error('Error al obtener informacion', error);

@@ -1,53 +1,28 @@
-
-<div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8">
-  <div>
-    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-50 mb-4">Feedback on Structure</h2>
-    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 space-y-4">
-      <div class="grid grid-cols-[30px_1fr] gap-4">
-        <div class="h-6 w-6 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
-          1
-        </div>
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50">Introduction</h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            The introduction could be more engaging and provide a clearer overview of the topic. Consider adding
-            a hook or an interesting fact to grab the reader's attention.
-          </p>
-        </div>
+    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 space-y-3" style="height: 300px;">
+      <div class="flex justify-between">
+         <h2 class="text-xl font-bold mb-6">Feedback por plantilla</h2>
+        <button (click)="onButtonClick()" 
+        class="  whitespace-nowrap text-sm font-medium ring-offset-background
+         transition-colors focus-visible:outline-none focus-visible:ring-2
+          focus-visible:ring-ring focus-visible:ring-offset-2
+           disabled:pointer-events-none disabled:opacity-50 
+            border-input bg-background 
+           hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-1">
+        <svg class="mr-2" data-testid="geist-icon" height="16" width="16" stroke-linejoin="round"
+          viewBox="0 0 16 16" style="color: currentcolor;">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M8.00002 1.25C5.33749 1.25 3.02334 2.73677 1.84047 4.92183L1.48342 5.58138L2.80253 6.29548L3.15958 5.63592C4.09084 3.91566 5.90986 2.75 8.00002 2.75C10.4897 2.75 12.5941 4.40488 13.2713 6.67462H11.8243H11.0743V8.17462H11.8243H15.2489C15.6631 8.17462 15.9989 7.83883 15.9989 7.42462V4V3.25H14.4989V4V5.64468C13.4653 3.06882 10.9456 1.25 8.00002 1.25ZM1.50122 10.8555V12.5V13.25H0.0012207V12.5V9.07538C0.0012207 8.66117 0.337007 8.32538 0.751221 8.32538H4.17584H4.92584V9.82538H4.17584H2.72876C3.40596 12.0951 5.51032 13.75 8.00002 13.75C10.0799 13.75 11.8912 12.5958 12.8266 10.8895L13.1871 10.2318L14.5025 10.9529L14.142 11.6105C12.9539 13.7779 10.6494 15.25 8.00002 15.25C5.05453 15.25 2.53485 13.4313 1.50122 10.8555Z"
+            fill="currentColor"></path></svg>
+         </button>
+     
       </div>
-      <div class="grid grid-cols-[30px_1fr] gap-4">
-        <div class="h-6 w-6 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
-          2
-        </div>
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50">Body Paragraphs</h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            The body paragraphs are well-structured and provide relevant information. However, consider adding
-            more transition phrases to improve the flow between ideas.
-          </p>
-        </div>
-      </div>
-      <div class="grid grid-cols-[30px_1fr] gap-4">
-        <div class="h-6 w-6 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">
-          3
-        </div>
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50">Conclusion</h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            The conclusion feels abrupt and could be strengthened by summarizing the key points and providing a
-            more impactful final statement.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    
-  </div>
-</div>
-<!-- <div class="flex flex-col min-h-screen bg-white dark:bg-gray-950">
-    <main class="flex-1 container mx-auto py-5 px-6">
       
-    </main>
-   
-  </div> -->
+      
+      <div class="grid grid-cols-[30px_1fr] gap-4">
+    
+        <markdown [data]="feedback"></markdown>
+      </div>
+    
+    </div>
+  <div> 
+</div>

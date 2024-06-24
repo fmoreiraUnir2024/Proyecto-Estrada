@@ -5,12 +5,16 @@ import { Proyecto } from '../models/proyecto'; // Asegúrate de tener un modelo 
 import baseUrl from './helper';
 import { DocumentFuente } from '../models/documento';
 import { FuenteConocimientoDTO } from '../models/fuenteConocimiento';
+import { dataia } from '../models/data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-
+  dataia: dataia= {
+    doc: '',
+    pla: ''
+  }
   constructor(private httpClient: HttpClient) { }
 
   crearProyecto(proyecto: Proyecto): Observable<Proyecto> {
@@ -32,6 +36,16 @@ export class ProjectService {
   actualizarContenido(id: number, contenido: string): Observable<Proyecto> {
     return this.httpClient.put<Proyecto>(`${baseUrl}/api/proyectos/contenido/${id}`, contenido);
   }
+  obtenerPuntos(contenido: string): Observable<string> {
+    const url = `${baseUrl}/gpt/v1/analisis`;
+   const body = { contents: [{ parts: [{ text: contenido }] }] };
+   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+ 
+   return this.httpClient.post(url, body, { headers, responseType: 'text' }).pipe(
+     catchError(this.handleError)
+   );
+   }
+
   buscarReferencias(contenido: string): Observable<string> {
    const url = `${baseUrl}/gpt/v1/chat`;
   const body = { contents: [{ parts: [{ text: contenido }] }] };
@@ -41,6 +55,26 @@ export class ProjectService {
     catchError(this.handleError)
   );
   }
+  obtenerAlternativas(contenido: string): Observable<string> {
+    const url = `${baseUrl}/gpt/v1/alt`;
+   const body = { contents: [{ parts: [{ text: contenido }] }] };
+   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+ 
+   return this.httpClient.post(url, body, { headers, responseType: 'text' }).pipe(
+     catchError(this.handleError)
+   );
+   }
+
+   analisisPlantilla(contenido: string, plantilla:string): Observable<string> {
+    const url = `${baseUrl}/gpt/v1/ia/planitlla`;
+    this.dataia.doc=contenido;
+    this.dataia.pla=plantilla;
+   const body = { contents: [{ parts: [{ text: contenido }] }] };
+   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+   return this.httpClient.post(url, this.dataia, { headers, responseType: 'text' }).pipe(
+     catchError(this.handleError)
+   );
+   }
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('An error occurred:', error.message);
     return throwError('Something bad happened; please try again later.');

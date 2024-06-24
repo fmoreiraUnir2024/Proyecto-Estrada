@@ -1,38 +1,37 @@
-<!--
-// v0 by Vercel.
-// https://v0.dev/t/qqt3LM8w96w
--->
-
-<div class="flex flex-col items-center justify-center h-screen bg-white">
-    <div class="w-full max-w-3xl px-6 py-8 bg-white rounded-lg shadow-lg">
-      <h1 class="text-3xl font-bold mb-6">Grammar &amp; Punctuation Review</h1>
-      <div class="bg-gray-100 rounded-md p-4 mb-6">
-        <p class="text-gray-700">
-          The quick brown fox jumps over the lazy dog. It's a common pangram used to test typography and keyboard
-          layouts.
+<div class="bg-gray-100 rounded-md p-4 mb-6" style="height: 300px;">
+  <div class="flex justify-between">
+    <h2 class="text-xl font-bold mb-1">Alternativas de redacción</h2>
+    <button (click)="onButtonClick()" 
+          class="  whitespace-nowrap text-sm font-medium ring-offset-background
+           transition-colors focus-visible:outline-none focus-visible:ring-2
+            focus-visible:ring-ring focus-visible:ring-offset-2
+             disabled:pointer-events-none disabled:opacity-50 
+              border-input bg-background 
+             hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-1">
+          <svg class="mr-2" data-testid="geist-icon" height="16" width="16" stroke-linejoin="round"
+            viewBox="0 0 16 16" style="color: currentcolor;">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8.00002 1.25C5.33749 1.25 3.02334 2.73677 1.84047 4.92183L1.48342 5.58138L2.80253 6.29548L3.15958 5.63592C4.09084 3.91566 5.90986 2.75 8.00002 2.75C10.4897 2.75 12.5941 4.40488 13.2713 6.67462H11.8243H11.0743V8.17462H11.8243H15.2489C15.6631 8.17462 15.9989 7.83883 15.9989 7.42462V4V3.25H14.4989V4V5.64468C13.4653 3.06882 10.9456 1.25 8.00002 1.25ZM1.50122 10.8555V12.5V13.25H0.0012207V12.5V9.07538C0.0012207 8.66117 0.337007 8.32538 0.751221 8.32538H4.17584H4.92584V9.82538H4.17584H2.72876C3.40596 12.0951 5.51032 13.75 8.00002 13.75C10.0799 13.75 11.8912 12.5958 12.8266 10.8895L13.1871 10.2318L14.5025 10.9529L14.142 11.6105C12.9539 13.7779 10.6494 15.25 8.00002 15.25C5.05453 15.25 2.53485 13.4313 1.50122 10.8555Z"
+              fill="currentColor"></path></svg>
+           </button>
+  </div>
+        <p [title]="original"  
+        class="text-gray-500 mb-4 truncate overflow-hidden">
+           {{original}}
         </p>
-        <div class="mt-4 space-y-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-900 font-medium">Suggestion 1</p>
-              <p class="text-gray-600">Change "It's" to "It is" for proper grammar.</p>
-            </div>
-            <div class="flex items-center space-x-2">
-              <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                Ac
-              </button>
-              <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                Re
-              </button>
+        <div  class="mt-4 space-y-4">
+          
+          <div class="">
+            <p class="text-gray-900 font-medium">Alternativa</p>
+            <div style="height: auto;max-height:150px; overflow-y: auto; overflow-x: hidden;">
+              <ul style="list-style: none;"  *ngFor="let fortaleza of alternativas"
+               class="list-disc  text-gray-600 gap-4 dark:text-gray-400">
+                <li class="mt-2">{{fortaleza}}</li>
+              </ul>
+             
             </div>
           </div>
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-900 font-medium">S</p>
-              <p class="text-gray-600">A</p>
-            </div>
-          </div>
+          
         </div>
       </div>
-    </div>
-  </div>
+

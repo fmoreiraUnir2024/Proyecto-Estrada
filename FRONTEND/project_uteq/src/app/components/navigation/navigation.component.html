@@ -1,6 +1,6 @@
 <header class="w-full bg-white dark:bg-gray-950 px-4 py-4">
-  <nav class="flex items-center justify-between max-w-6xl mx-auto">
-    <div class="flex items-center space-x-4 md:space-x-6">
+  <nav class="flex items-center justify-between">
+    <div class="flex  items-center space-x-4 md:space-x-6">
       <a *ngIf="isLoggedIn" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors" routerLink="/dashboard">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
           <rect width="7" height="9" x="3" y="3" rx="1"></rect>
@@ -22,35 +22,8 @@
        
         <span class="sr-only">Create Project</span>
       </a>
-      <!-- <a *ngIf="isLoggedIn" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors" routerLink="/project-data-entry">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
-          <path d="M5 12h14"></path>
-          <path d="M12 5v14"></path>
-        </svg>
-        <span class="sr-only">Create Project</span>
-      </a> -->
-      <!-- <a *ngIf="isLoggedIn" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors" routerLink="/project-management">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
-          <path d="M5 12h14"></path>
-          <path d="M12 5v14"></path>
-        </svg>
-        <span class="sr-only">Create Project</span>
-      </a> -->
-      <!-- <a *ngIf="isLoggedIn" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors" routerLink="/style-guide">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
-          <path d="M5 12h14"></path>
-          <path d="M12 5v14"></path>
-        </svg>
-        <span class="sr-only">Create Project</span>
-      </a> -->
       </div>
-      <!-- <a *ngIf="isLoggedIn" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors" routerLink="/feedback">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
-          <path d="M5 12h14"></path>
-          <path d="M12 5v14"></path>
-        </svg>
-        <span class="sr-only">Create Project</span>
-      </a> -->
+
       <div *ngIf="isLoggedIn" class="flex items-center space-x-4">
         <a routerLink="/profile" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-offset-gray-800">
           Profile
