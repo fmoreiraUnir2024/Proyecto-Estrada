@@ -20,6 +20,10 @@ export class ProjectService {
   crearProyecto(proyecto: Proyecto): Observable<Proyecto> {
     return this.httpClient.post<Proyecto>(`${baseUrl}/api/proyectos`, proyecto);
   }
+  
+  actualizarProyecto(proyecto: Proyecto): Observable<Proyecto> {
+    return this.httpClient.put<Proyecto>(`${baseUrl}/api/proyectos`, proyecto);
+  }
   buscarProyectoPorId(id: any): Observable<Proyecto> {
     return this.httpClient.get<Proyecto>(`${baseUrl}/api/proyectos/${id}`);
   }

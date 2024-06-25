@@ -10,5 +10,6 @@ import java.util.List;
 public interface ProyectoRepositorio extends JpaRepository<Proyecto, Integer> {
 
     List<Proyecto> findByUsuarioId(Long usuarioId);
-
+    @Query("SELECT COUNT(p) > 0 FROM Proyecto p WHERE p.plantilla.id = :plantillaId")
+    boolean existsByPlantillaId(Long plantillaId);
 }

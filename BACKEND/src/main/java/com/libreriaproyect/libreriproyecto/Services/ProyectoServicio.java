@@ -9,7 +9,7 @@ public interface ProyectoServicio {
     Proyecto crearProyecto(ProyectoDTO proyecto);
     Proyecto obtenerProyectoPorId(Integer id);
     List<Proyecto> obtenerTodosLosProyectos();
-    Proyecto actualizarProyecto(Integer id, Proyecto proyecto);
+    Proyecto actualizarProyecto(ProyectoDTO proyectoDTO);
     void eliminarProyecto(Integer id);
     List<Proyecto> obtenerProyectosPorUsuarioId(Long usuarioId);
     Proyecto actualizarContenido(Integer id, String nuevoContenido);

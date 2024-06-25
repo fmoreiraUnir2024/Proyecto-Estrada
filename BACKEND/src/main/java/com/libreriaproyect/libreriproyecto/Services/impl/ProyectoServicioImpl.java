@@ -52,10 +52,21 @@ public class ProyectoServicioImpl implements ProyectoServicio {
     }
 
     @Override
-    public Proyecto actualizarProyecto(Integer id, Proyecto proyecto) {
-        if (proyectoRepositorio.existsById(id)) {
-            proyecto.setId(id);
-            return proyectoRepositorio.save(proyecto);
+    public Proyecto actualizarProyecto(ProyectoDTO proyectoDTO) {
+
+        if (proyectoRepositorio.existsById(proyectoDTO.getId())) {
+
+            Plantilla plantilla = plantillaRepositorio.findById(proyectoDTO.getPlantilla_id())
+                    .orElseThrow(() -> new RuntimeException("Plantilla no encontrada"));
+            Usuario usuario = usuarioRepositorio.findById(proyectoDTO.getUsuario_id()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+            return proyectoRepositorio.save(Proyecto.builder()
+                    .nombre(proyectoDTO.getNombre())
+                    .descripcion(proyectoDTO.getDescripcion())
+                    .tipoArticulo(proyectoDTO.getTipo_articulo())
+                    .plantilla(plantilla)
+                    .usuario(usuario)
+                    .build());
+
         } else {
             return null;
         }

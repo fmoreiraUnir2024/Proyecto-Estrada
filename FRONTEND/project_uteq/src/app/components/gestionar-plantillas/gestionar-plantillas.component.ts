@@ -5,6 +5,7 @@ import * as PizZip from 'pizzip';
 import * as Docxtemplater from 'docxtemplater';
 import * as FileSaver from 'file-saver';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-gestionar-plantillas',
@@ -21,8 +22,8 @@ export class GestionarPlantillasComponent implements OnInit {
   archivoSeleccionado: File | null = null;
   plantillas: Plantilla[] = [];
   contenidoArchivo = '';
-  constructor(private plantillaService: PlantillaService, private authService: AuthService) { }
 
+  constructor(private plantillaService: PlantillaService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargarPlantillas();
@@ -67,6 +68,7 @@ export class GestionarPlantillasComponent implements OnInit {
 
     const text = doc.getFullText();
     this.nuevaPlantilla.formato = text;
+    this.contenidoArchivo = text;
     console.log(this.nuevaPlantilla.formato);
   }
 
@@ -79,18 +81,82 @@ export class GestionarPlantillasComponent implements OnInit {
         usuario_id: usuario.id // Asegúrate de que el usuario tenga un id
       };
 
-      this.plantillaService.crearPlantilla(plantillaDTO).subscribe(
-        (response) => {
-          console.log('Plantilla guardada exitosamente', response);
-          this.cargarPlantillas(); // Recargar las plantillas después de guardar
-        },
-        (error) => {
-          console.error('Error al guardar la plantilla', error);
-        }
-      );
+      if (this.nuevaPlantilla.id) {
+        // this.plantillaService.actualizarPlantilla(this.nuevaPlantilla.id, plantillaDTO).subscribe(
+        //   (response) => {
+        //     console.log('Plantilla actualizada exitosamente', response);
+        //     this.cargarPlantillas(); // Recargar las plantillas después de actualizar
+        //     this.resetForm();
+        //   },
+        //   (error) => {
+        //     console.error('Error al actualizar la plantilla', error);
+        //   }
+        // );
+      } else {
+        this.plantillaService.crearPlantilla(plantillaDTO).subscribe(
+          (response) => {
+            console.log('Plantilla guardada exitosamente', response);
+            this.cargarPlantillas(); 
+            this.resetForm();
+          },
+          (error) => {
+            console.error('Error al guardar la plantilla', error);
+          }
+        );
+      }
     }
   }
+  limpiar()
+  {
+    this.resetForm();
+  }
   seleccionarPlantilla(plantilla: Plantilla): void {
-    console.log('Plantilla seleccionada:', plantilla);
+    this.nuevaPlantilla = { ...plantilla };
+    this.contenidoArchivo = plantilla.formato;
+  }
+
+  eliminarPlantilla(plantilla: Plantilla): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás revertir esta acción!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.plantillaService.eliminarPlantilla(plantilla.id).subscribe(
+          (response) => {
+            console.log('Plantilla eliminada exitosamente', response);
+            this.cargarPlantillas(); // Recargar las plantillas después de eliminar
+            Swal.fire(
+              'Eliminada!',
+              'La plantilla ha sido eliminada.',
+              'success'
+            );
+          },
+          (error) => {
+            console.error('Error al eliminar la plantilla', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'No se pudo eliminar la plantilla porque está relacionada con un proyecto.'
+            });
+          }
+        );
+      }
+    });
+  }
+
+  resetForm(): void {
+    this.nuevaPlantilla = {
+      id: 0,
+      nombre: '',
+      formato: '',
+      usuario_id: null
+    };
+    this.contenidoArchivo = '';
+    this.archivoSeleccionado = null;
   }
 }

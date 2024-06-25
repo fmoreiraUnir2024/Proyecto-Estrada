@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "proyectos")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Proyecto {

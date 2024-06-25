@@ -49,7 +49,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/project-data-entry', proyectoId]);
     
   }
-
+  abriInformacion(proyectoId: number): void {
+    this.router.navigate(['/create-project/', proyectoId]);
+    
+  }
   DescargarDocumentoProyecto(proyectoId: number): void {
     this.router.navigate(['/project-data-entry', proyectoId, '/documentos']);
   }

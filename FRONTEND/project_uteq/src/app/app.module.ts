@@ -14,11 +14,13 @@ import { GrammarReviewComponent } from './components/grammar-review/grammar-revi
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
 import { AuthInterceptor } from './services/AuthInterceptor'; // Importa el interceptor
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GestionarPlantillasComponent } from './components/gestionar-plantillas/gestionar-plantillas.component';
 import { ProjectComponent } from './components/project/project.component'; 
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { MarkdownModule } from 'ngx-markdown';
+
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { MarkdownModule } from 'ngx-markdown';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,EditorModule,
+    FormsModule,
+    EditorModule,
+    ReactiveFormsModule,
     MarkdownModule.forRoot(),
   
   ],

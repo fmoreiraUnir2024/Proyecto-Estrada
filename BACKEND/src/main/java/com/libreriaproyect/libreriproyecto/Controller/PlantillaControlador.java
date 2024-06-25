@@ -2,6 +2,7 @@ package com.libreriaproyect.libreriproyecto.Controller;
 import com.libreriaproyect.libreriproyecto.Services.PlantillaServicio;
 import com.libreriaproyect.libreriproyecto.entidades.proyecto.Plantilla;
 import com.libreriaproyect.libreriproyecto.entidades.proyecto.dto.PlantillaDTO;
+import com.libreriaproyect.libreriproyecto.repository.ProyectoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,9 +57,18 @@ public class PlantillaControlador {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @Autowired
+    private ProyectoRepositorio proyectoRepositorio;
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarPlantilla(@PathVariable Long id) {
+
+        boolean estaRelacionada = proyectoRepositorio.existsByPlantillaId(id);
+
+        if (estaRelacionada) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+
         plantillaServicio.eliminarPlantilla(id);
         return ResponseEntity.noContent().build();
     }

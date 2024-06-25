@@ -13,6 +13,7 @@ public class ProyectoDTO {
     @NotNull
     private String nombre;
     private Integer id;
+    private Integer proyecto_id;
     @NotNull
     private String descripcion;
 

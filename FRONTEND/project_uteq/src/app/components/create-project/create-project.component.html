@@ -1,7 +1,7 @@
 <div class="w-full max-w-2xl mx-auto py-12 px-4 md:px-6">
   <div class="space-y-6">
     <div>
-      <h1 class="text-3xl font-bold tracking-tighter">Crear un Nuevo Proyecto</h1>
+      <h1 class="text-3xl font-bold tracking-tighter">{{ idProyecto ? 'Editar Proyecto' : 'Crear un Nuevo Proyecto' }}</h1>
       <p class="text-gray-500 dark:text-gray-400">Comienza llenando el formulario a continuación.</p>
     </div>
     <form class="grid grid-cols-1 gap-6" (ngSubmit)="crearProyecto()">
@@ -50,9 +50,10 @@
           name="tipoArticulo"
         >
           <option value="">Selecciona el tipo de artículo</option>
-          <option value="report">Reporte</option>
-          <option value="scientific">Artículo Científico</option>
+          <option value="Reporte">Reporte</option>
+          <option value="ArtículoCientífico">Artículo Científico</option>
           <option value="manual">Manual</option>
+          <option value="revista">Revista</option>
         </select>
       </div>
       <div>
@@ -65,14 +66,45 @@
           [(ngModel)]="proyecto.plantilla_id"
           name="plantillaId"
         >
-          <option *ngFor="let plantilla of plantillas" [value]="plantilla.id">{{plantilla.nombre}}</option>
+          <option *ngFor="let plantilla of plantillas"
+           [value]="plantilla.id">{{plantilla.nombre}}</option>
         </select>
       </div>
+      <div class="flex justify-between">
+        <button *ngIf="proyecto.proyecto_id!=0" 
+        (click)="verTodaInformacionProyecto(proyecto.proyecto_id)" 
+        class="inline-flex
+        items-center 
+        justify-center 
+        whitespace-nowrap 
+        p-4
+      
+        rounded-md text-sm 
+        font-medium ring-offset-background 
+        transition-colors focus-visible:outline-none 
+        focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+        disabled:pointer-events-none disabled:opacity-50 bg-gray-200">
+          
+         Editar el contenido 
+        </button>
+
+        <button class="inline-flex
+         items-center 
+         justify-center 
+         whitespace-nowrap 
+         p-4
+       
+         rounded-md text-sm 
+         font-medium ring-offset-background 
+         transition-colors focus-visible:outline-none 
+         focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+         disabled:pointer-events-none disabled:opacity-50 " 
+         [ngClass]="{ 'bg-blue-500 text-black-900': !idProyecto, 
+         'bg-green-500 text-white': idProyecto }" 
+         type="submit">
+          {{ idProyecto ? 'Actualizar Proyecto' : 'Crear Proyecto' }}
+        </button>
+      </div>
     </form>
-    <div class="flex justify-end">
-      <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-black text-white hover:bg-black/90 h-10 py-2 px-8" (click)="crearProyecto()">
-        Crear Proyecto
-      </button>
-    </div>
   </div>
 </div>

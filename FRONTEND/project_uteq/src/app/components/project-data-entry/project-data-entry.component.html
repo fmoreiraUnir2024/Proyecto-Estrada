@@ -114,7 +114,9 @@
               <tbody  *ngFor="let documento of listdocumentoFuente" class="[&amp;_tr:last-child]:border-0">
                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                   <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"> {{ documento.nombre }}</td>
-                  <td [title]="documento.contenido" class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold truncate max-w-xs">
+                  <td [title]="documento.contenido"
+                   class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 
+                   font-semibold truncate max-w-xs">
                     {{ documento.contenido }}
                   </td>
                   <td class="p-4 align-middle  [&amp;:has([role=checkbox])]:pr-0">

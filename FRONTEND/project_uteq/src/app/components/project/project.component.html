@@ -44,6 +44,7 @@
 
   <div class="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-5 p-3 md:p-6">
     <div class="bg-white rounded-lg  p- dark:bg-gray-950">
+
       <editor apiKey="8phbkaeghasw787tkiaq6kczl3xuxk3uwy6u5nffz5hu3enb" [(ngModel)]="editorContent" [init]="{
             setup: setupEditor,
             height: 700,
@@ -57,7 +58,7 @@
             'undo redo | formatselect | bold italic backcolor | \
             alignleft aligncenter alignright alignjustify | \
             bullist numlist outdent indent | removeformat | help'
-        }"></editor>
+        }"></editor> 
 
 
     </div>
@@ -167,7 +168,7 @@
      
     </div>
     <div class="bg-white  p-0 dark:bg-gray-950">
-      <button></button>
+   
       <app-grammar-review
        (obtenerAlternativas)="obtenerAlternativas()" 
        [alternativas]="alternativas" [original]="selectedText" ></app-grammar-review>

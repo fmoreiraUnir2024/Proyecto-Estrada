@@ -42,7 +42,8 @@ export class ProjectComponent implements OnInit {
   alternativas:string[]=[];
   nombreplantilla:any;
   contenidplantilla:any;
-  markdownContent = '';
+  markdownContent = ""
+;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -57,7 +58,21 @@ export class ProjectComponent implements OnInit {
       this.cargarFuentes(this.idProyecto);
     });
   }
-
+  cargarInformacion(id: any): void {
+    this.proyectoService.buscarProyectoPorId(id).subscribe(
+      (data: any) => {
+        this.datosProyecto = data;
+        this.contenidplantilla = data.plantilla.formato;        
+        this.editorContent = data.contenido === '' || data.contenido === null ? data.plantilla.formato : data.contenido;
+        this.nombreplantilla=data.plantilla.nombre;
+      
+        console.log(this.datosProyecto);
+      },
+      error => {
+        console.error('Error al obtener informacion', error);
+      }
+    );
+  }
   setupEditor = (editor: any) => {
     editor.ui.registry.addButton('customButton', {
       text: 'Capturar',
@@ -153,21 +168,7 @@ export class ProjectComponent implements OnInit {
     );
   }
  
-  cargarInformacion(id: any): void {
-    this.proyectoService.buscarProyectoPorId(id).subscribe(
-      (data: any) => {
-        this.datosProyecto = data;
-        this.contenidplantilla = data.plantilla.formato;        
-        this.editorContent = data.contenido === '' || data.contenido === null ? data.plantilla.formato : data.contenido;
-        this.nombreplantilla=data.plantilla.nombre;
-      
-        console.log(this.datosProyecto);
-      },
-      error => {
-        console.error('Error al obtener informacion', error);
-      }
-    );
-  }
+ 
   obtenerfeedback(): void
   {
      const seleccion: string = this.selectedText;

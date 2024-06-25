@@ -27,7 +27,24 @@ public class ProyectoControlador {
         Proyecto proyecto = proyectoServicio.crearProyecto(proyectoDTO);
         return new ResponseEntity<>(proyecto, HttpStatus.CREATED);
     }
-
+    @PutMapping()
+    public ResponseEntity<Proyecto> actualizarProyecto(@RequestBody ProyectoDTO proyectoDTO) {
+        Proyecto proyectoActualizado = proyectoServicio.actualizarProyecto(proyectoDTO);
+        if (proyectoActualizado != null) {
+            return ResponseEntity.ok(proyectoActualizado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @PutMapping("contenido/{id}")
+    public ResponseEntity<Proyecto> actualizarContenido(@PathVariable Integer id, @RequestBody String nuevoContenido) {
+        Proyecto proyectoActualizado = proyectoServicio.actualizarContenido(id, nuevoContenido);
+        if (proyectoActualizado != null) {
+            return ResponseEntity.ok(proyectoActualizado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Proyecto> obtenerProyectoPorId(@PathVariable Integer id) {
         Proyecto proyecto = proyectoServicio.obtenerProyectoPorId(id);
@@ -46,24 +63,8 @@ public class ProyectoControlador {
         List<Proyecto> proyectos = proyectoServicio.obtenerTodosLosProyectos();
         return ResponseEntity.ok(proyectos);
     }
-    @PutMapping("contenido/{id}")
-    public ResponseEntity<Proyecto> actualizarContenido(@PathVariable Integer id, @RequestBody String nuevoContenido) {
-        Proyecto proyectoActualizado = proyectoServicio.actualizarContenido(id, nuevoContenido);
-        if (proyectoActualizado != null) {
-            return ResponseEntity.ok(proyectoActualizado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    @PutMapping("/{id}")
-    public ResponseEntity<Proyecto> actualizarProyecto(@PathVariable Integer id, @RequestBody Proyecto proyecto) {
-        Proyecto proyectoActualizado = proyectoServicio.actualizarProyecto(id, proyecto);
-        if (proyectoActualizado != null) {
-            return ResponseEntity.ok(proyectoActualizado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarProyecto(@PathVariable Integer id) {
