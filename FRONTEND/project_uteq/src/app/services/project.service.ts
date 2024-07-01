@@ -13,7 +13,7 @@ import { dataia } from '../models/data';
 export class ProjectService {
   dataia: dataia= {
     doc: '',
-    pla: ''
+    plan: ''
   }
   constructor(private httpClient: HttpClient) { }
 
@@ -72,7 +72,7 @@ export class ProjectService {
    analisisPlantilla(contenido: string, plantilla:string): Observable<string> {
     const url = `${baseUrl}/gpt/v1/ia/planitlla`;
     this.dataia.doc=contenido;
-    this.dataia.pla=plantilla;
+    this.dataia.plan=plantilla;
    const body = { contents: [{ parts: [{ text: contenido }] }] };
    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
    return this.httpClient.post(url, this.dataia, { headers, responseType: 'text' }).pipe(
@@ -82,5 +82,32 @@ export class ProjectService {
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('An error occurred:', error.message);
     return throwError('Something bad happened; please try again later.');
+  }
+ 
+  downloadPdf(contenido: string): Observable<Blob> {
+    const url = `${baseUrl}/openia/v1/completions/`;
+    this.dataia.doc = contenido;
+    this.dataia.plan = '';
+    return this.httpClient.post(url, this.dataia, { responseType: 'blob' });
+  }
+  
+  argumentoFuente(mitexto: string, fuente:string, titulo:string): Observable<string> {
+    const url = `${baseUrl}/openia/v1/fuentes/`;
+    this.dataia.doc = `Título del Proyecto: ${titulo} Resumen del proyecto: ${mitexto}`     
+    this.dataia.plan = fuente;
+    return this.httpClient.post(url, this.dataia, { responseType: 'text' });
+  }
+  
+ 
+  getDiagramImage(resumen: Proyecto): Observable<string> {
+    const url = `${baseUrl}/openia/v1/mermaid/`;
+    const dataia = { doc: `${resumen.nombre} ${resumen.descripcion} ${resumen.tipo_articulo}` };
+    return this.httpClient.post(url, dataia, { responseType: 'text' });
+  }
+
+  generateMermaidImage(mermaidCode: string): Observable<Blob> {
+    const encodedMermaidCode = encodeURIComponent(mermaidCode);
+    const url = `https://mermaid.ink/img/${encodedMermaidCode}`;
+    return this.httpClient.get(url, { responseType: 'blob' });
   }
 }

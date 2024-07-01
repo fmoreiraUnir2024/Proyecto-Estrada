@@ -13,7 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            
             "outputPath": "dist/project_uteq",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -23,12 +22,49 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce",
+                "output": "/assets/tinymce/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce/skins",
+                "output": "/tinymce/skins"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce/themes",
+                "output": "/tinymce/themes"
+              },
+           
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce/icons",
+                "output": "/tinymce/icons/"
+              },  {
+                "glob": "**/*",
+                "input": "node_modules/tinymce/skins",
+                "output": "/assets/tinymce/skins"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce/themes",
+                "output": "/assets/tinymce/themes"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce/icons",
+                "output": "/assets/tinymce/icons"
+              }
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/tinymce/tinymce.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -83,14 +119,49 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+            "assets": [  "src/favicon.ico",      "src/assets", {
+              "glob": "**/*",
+              "input": "node_modules/tinymce",
+              "output": "/assets/tinymce/"
+            },
+            {
+              "glob": "**/*",
+              "input": "node_modules/tinymce/skins",
+              "output": "/tinymce/skins"
+            },
+            {
+              "glob": "**/*",
+              "input": "node_modules/tinymce/themes",
+              "output": "/tinymce/themes"
+            },
+         
+            {
+              "glob": "**/*",
+              "input": "node_modules/tinymce/icons",
+              "output": "/tinymce/icons/"
+            },  {
+              "glob": "**/*",
+              "input": "node_modules/tinymce/skins",
+              "output": "/assets/tinymce/skins"
+            },
+            {
+              "glob": "**/*",
+              "input": "node_modules/tinymce/themes",
+              "output": "/assets/tinymce/themes"
+            },
+            {
+              "glob": "**/*",
+              "input": "node_modules/tinymce/icons",
+              "output": "/assets/tinymce/icons"
+            }
+             
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/tinymce/tinymce.min.js"
+            ]
           }
         }
       }

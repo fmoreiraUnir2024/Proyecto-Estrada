@@ -34,7 +34,6 @@ public class DocumentoControlador {
     }
     public static FuenteConocimientoDTO buildFromDocuments(List<DocumentoDTO> documentos) {
         StringBuilder contenidoBuilder = new StringBuilder();
-
         documentos.forEach(documento -> {
             contenidoBuilder.append("Título: ").append(documento.getNombre()).append("\n");
             contenidoBuilder.append("Contenido: ").append(documento.getContenido()).append("\n\n");

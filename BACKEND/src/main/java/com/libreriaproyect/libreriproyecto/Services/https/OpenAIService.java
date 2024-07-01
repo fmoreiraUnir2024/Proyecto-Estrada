@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class OpenAIService {
-    @Value("${openai.api.key}")
+
     private String apiKey;
 
     private final WebClient webClient;
@@ -21,7 +21,7 @@ public class OpenAIService {
     public Mono<String> getChatGPTResponse(String prompt) {
         return this.webClient.post()
                 .uri("/chat/completions")
-                .header("Authorization", "Bearer " + apiKey)
+                .header("Authorization", "Bearer " + "")
                 .body(Mono.just(new ChatGPTRequest(prompt)), ChatGPTRequest.class)
                 .retrieve()
                 .bodyToMono(ChatGPTResponse.class)

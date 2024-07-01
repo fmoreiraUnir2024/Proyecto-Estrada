@@ -3,9 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {DocumentFuente } from '../../models/documento'
 import * as PizZip from 'pizzip';
 import * as Docxtemplater from 'docxtemplater';
-import * as FileSaver from 'file-saver';
+
 import { ProjectService } from 'src/app/services/project.service';
 import { Proyecto } from 'src/app/models/proyecto';
+import { PDFDocument } from 'pdf-lib';
+
+
+
 @Component({
   selector: 'app-project-data-entry',
   templateUrl: './project-data-entry.component.html',
@@ -44,6 +48,8 @@ export class ProjectDataEntryComponent  implements OnInit {
       this.cargarDocumento();
     });
   }
+
+
   cargarDocumento(): void {
     this.proyectoService.obtenerDocumentos(this.documentoFuente.proyecto_id).subscribe(
       (data) => {
@@ -75,7 +81,8 @@ export class ProjectDataEntryComponent  implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const arrayBuffer = e.target.result;
-        if (file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+        if (file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+         {
           this.documentoFuente.nombre=file.name;
           this.readDocx(arrayBuffer);
         } else if (file.type === "text/plain") {

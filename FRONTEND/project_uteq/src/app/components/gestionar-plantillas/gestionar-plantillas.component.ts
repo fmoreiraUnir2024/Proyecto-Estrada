@@ -82,16 +82,16 @@ export class GestionarPlantillasComponent implements OnInit {
       };
 
       if (this.nuevaPlantilla.id) {
-        // this.plantillaService.actualizarPlantilla(this.nuevaPlantilla.id, plantillaDTO).subscribe(
-        //   (response) => {
-        //     console.log('Plantilla actualizada exitosamente', response);
-        //     this.cargarPlantillas(); // Recargar las plantillas después de actualizar
-        //     this.resetForm();
-        //   },
-        //   (error) => {
-        //     console.error('Error al actualizar la plantilla', error);
-        //   }
-        // );
+        this.plantillaService.actualizarPlantilla(this.nuevaPlantilla.id, this.nuevaPlantilla).subscribe(
+          (response) => {
+            console.log('Plantilla actualizada exitosamente', response);
+            this.cargarPlantillas(); 
+            this.resetForm();
+          },
+          (error) => {
+            console.error('Error al actualizar la plantilla', error);
+          }
+        );
       } else {
         this.plantillaService.crearPlantilla(plantillaDTO).subscribe(
           (response) => {
