@@ -50,7 +50,7 @@ public class ChatGPTController {
     public Mono<ResponseEntity<String>> getChatFuentes(@RequestBody entrada ggggdatos) {
         String prompt = analisisFuentes(ggggdatos.getDoc(), ggggdatos.getPlan());
         WebClient webClient = webClientBuilder.baseUrl("https://api.openai.com/v1")
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + " ")
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + "")
                 .build();
 
         return webClient.post()
@@ -85,7 +85,7 @@ public class ChatGPTController {
     public Mono<ResponseEntity<String>> mermaid(@RequestBody entrada ggggdatos) {
         String prompt = analisisMermaid(ggggdatos.getDoc());
         WebClient webClient = webClientBuilder.baseUrl("https://api.openai.com/v1")
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + " ")
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + "")
                 .build();
 
         return webClient.post()
@@ -102,7 +102,16 @@ public class ChatGPTController {
         return enun + " " + mitxto +" Solo retorname el codigo mermaid no quiero nigunda palabra o simbolo de tu parte, solo quiero lo que te pido no mas palabras de intro tuyas ni resumenes" ;
     }
     private String createPrompt(String htmlContent) {
-        String enun = "Por favor, convierte el siguiente HTML a LaTeX, asegurando que la estructura del documento sea correcta y que todos los caracteres especiales, incluidos los caracteres invisibles como espacios sin separación (U+200B), estén correctamente manejados o eliminados. Además, evita usar entornos no estándar como `justify` a menos que estén explícitamente definidos en el código. Utiliza comandos y estructuras de LaTeX apropiados para elementos como títulos, párrafos, énfasis y listas. Incluye enlaces como hiperreferencias utilizando el paquete `hyperref`, y asegúrate de que todas las llaves abiertas tengan su cierre correspondiente. La respuesta debe contener exclusivamente el código LaTeX generado, sin ningún mensaje adicional.\n";
+        String enun = "Por favor, convierte el siguiente HTML a LaTeX para articulos cientificos de dos columas con las normas IEEE, asegurando que la estructura del documento sea correcta y que todos los caracteres especiales, incluidos los caracteres invisibles como espacios sin separación (U+200B), estén correctamente manejados o eliminados. Además, evita usar entornos no estándar como `justify` a menos que estén explícitamente definidos en el código. Utiliza comandos y estructuras de LaTeX apropiados para elementos como títulos, párrafos, énfasis y listas. Incluye enlaces como hiperreferencias utilizando el paquete `hyperref`, y asegúrate de que todas las llaves abiertas tengan su cierre correspondiente. La respuesta debe contener exclusivamente el código LaTeX generado, sin ningún mensaje adicional. evitar este error en el formato latex LaTeX Warning: No \\author given.\n" +
+                "\n" +
+                "\n" +
+                "! LaTeX Error: Environment jusify undefined.\n" +
+                "\n" +
+                "See the LaTeX manual or LaTeX Companion for explanation.\n" +
+                "Type  H <return>  for immediate help.\n" +
+                " ...                                              \n" +
+                "                                                  \n" +
+                "l.24 \\begin{jusify}\n";
         String html = " HTML: [" + htmlContent + "]";
         String consejo = " Consejo: Utiliza el paquete `hyperref` para los enlaces y `graphicx` para las imágenes. Recuerda utilizar `\\textbf{}` para texto en negrita, `\\textit{}` para texto en cursiva, y estructuras como `\\section{}`, `\\subsection{}` para organización de secciones, según se presenta en el documento de LaTeX proporcionado.";
         String nota="Nota: Si es necesario justificar el texto, por favor proporciona las instrucciones específicas o el código necesario para definir un entorno `justify` utilizando el paquete `ragged2e`, o asegúrate de que el texto esté justificado de acuerdo con las configuraciones predeterminadas de LaTeX. Utiliza el paquete `fontenc` con la opción `[T1]` y el paquete `inputenc` con la opción `[utf8]` para asegurar la correcta codificación y representación de caracteres.";

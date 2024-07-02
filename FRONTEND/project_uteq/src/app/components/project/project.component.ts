@@ -399,10 +399,12 @@ export class ProjectComponent implements OnInit {
 
     this.proyectoService.getDiagramImage(this.datosProyecto).subscribe(
       (data) => {
+        console.log(data)
         const mermaidText = data.replace(/```|mermaid|"|/g, '');
         this.proyectoService.generateMermaidImage(mermaidText).subscribe(
           (blob: Blob) => {
             Swal.close();
+
             saveAs(blob, 'diagram.png');
             Swal.fire('Diagrama generado', 'El diagrama ha sido generado y descargado con éxito.', 'success');
           },
